@@ -40,3 +40,11 @@ _darcs
 **/node_modules
 yarn.lock
 package-lock.json
+
+# datasets
+brl_notebooks/images
+brl_notebooks/isolating_masks
+brl_notebooks/universal_masks
+
+# others
+brl_notebooks/coordinate.txt
