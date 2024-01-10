@@ -77,7 +77,9 @@ if __name__ == "__main__":
     save_folder = "/home/rcli/sam-ws/segment-anything/brl_notebooks/isolating_masks/Attempt_2"
 
     files = os.listdir(input_folder)
+    files.sort()
     for file in files:
+        print("file:",file)
         image_path = os.path.join(input_folder, file)
         image = cv2.imread(image_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -117,10 +119,11 @@ if __name__ == "__main__":
 
         output_subfolder = os.path.join(save_folder, os.path.splitext(file)[0])
         os.makedirs(output_subfolder, exist_ok=True)
+            
 
         fig_idx = 0
         for mask_data in sam_mask_list:
-            # if 1000 < mask_data.mask.sum() <= 100000:
+
             print("mask_size:", mask_data.mask.sum())
 
             mask_image = (mask_data.mask * 255).astype(np.uint8)
