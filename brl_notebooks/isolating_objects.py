@@ -74,7 +74,7 @@ if __name__ == "__main__":
     device = "cuda"
     model_type = "vit_h"
     input_folder = "/home/rcli/sam-ws/segment-anything/brl_notebooks/images"
-    save_folder = "/home/rcli/sam-ws/segment-anything/brl_notebooks/isolating_masks"
+    save_folder = "/home/rcli/sam-ws/segment-anything/brl_notebooks/isolating_masks/Attempt_2"
 
     files = os.listdir(input_folder)
     for file in files:
@@ -122,14 +122,17 @@ if __name__ == "__main__":
         for mask_data in sam_mask_list:
             # if 1000 < mask_data.mask.sum() <= 100000:
             print("mask_size:", mask_data.mask.sum())
+
             mask_image = (mask_data.mask * 255).astype(np.uint8)
+            mask_image[mask_data.mask == 0] = 64
             isolated = np.dstack([image, mask_image])
+
             fig_idx += 1
             plt.figure(figsize=(10,10))
             plt.imshow(isolated)
-            plt.title(f"isolated object {fig_idx}", fontsize=18)
+            # plt.title(f"isolated object {fig_idx}", fontsize=18)
             plt.axis('off')
-            output_file = os.path.join(output_subfolder, f"isolated_{fig_idx}.png")
+            output_file = os.path.join(output_subfolder, f"{fig_idx}.png")
             plt.savefig(output_file, bbox_inches="tight", dpi=300, pad_inches=0.0)
             plt.close()
     
