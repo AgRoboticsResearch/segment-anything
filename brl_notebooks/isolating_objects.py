@@ -108,8 +108,8 @@ if __name__ == "__main__":
             multimask_output=True, 
             )
 
-            mask = masks[1]
-            score = scores[1]
+            mask = masks[1] # 0-mask1, 1-mask2, 2-mask3
+            score = scores[1] # 0-mask1, 1-mask2, 2-mask3
             mask_data = Maskdata(mask, score, index)
 
             masks_list.append(mask_data)
